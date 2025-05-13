@@ -18,7 +18,7 @@
         <Button fx:id="addRandomStudentsButton" layoutX="368.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Pridėti 10 DEBUG" />
         <TextField fx:id="nameField" layoutX="28.0" layoutY="48.0" promptText="Vardas" />
         <TextField fx:id="surnameField" layoutX="197.0" layoutY="48.0" promptText="Pavardė" />
-        <Label id="problem" layoutX="29.0" layoutY="74.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <Label fx:id="problemStudentField" layoutX="29.0" layoutY="74.0" prefHeight="22.0" prefWidth="327.0" text="" textFill="RED" />
         <Button fx:id="removeButton" layoutX="202.0" layoutY="143.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Išmesti" />
         <Label layoutX="28.0" layoutY="115.0" prefHeight="20.0" prefWidth="236.0" text="Studento duomenų redagavimas">
             <font>
@@ -34,7 +34,7 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <Label fx:id="problemStudentField" layoutY="204.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <Label fx:id="problemEditField" layoutX="32.0" layoutY="204.0" prefHeight="22.0" prefWidth="327.0" text="" textFill="RED" />
         <Label layoutX="29.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0" text="Studento pridėjimas">
             <font>
                 <Font size="16.0" />
@@ -45,7 +45,7 @@
         <Button fx:id="deleteGroupButton" layoutX="329.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Trinti" />
         <Button fx:id="assignToGroupButton" layoutX="195.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Pridėti studentą" />
         <Button fx:id="removeFromGroupButton" layoutX="323.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Išmesti studentą" />
-        <Label fx:id="problemGroupField" layoutX="29.0" layoutY="333.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <Label fx:id="problemGroupField" layoutX="29.0" layoutY="333.0" prefHeight="22.0" prefWidth="327.0" text="" textFill="RED" />
         <TextField fx:id="editIdField" layoutX="31.0" layoutY="143.0" promptText="Studento ID" />
         <TextField fx:id="groupIdField" layoutX="28.0" layoutY="307.0" promptText="Studento ID" />
     </children>

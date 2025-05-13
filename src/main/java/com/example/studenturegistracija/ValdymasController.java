@@ -61,7 +61,8 @@ public class ValdymasController {
     private Label problemGroupField;
     @FXML
     private Label problemStudentField;
-
+    @FXML
+    private Label problemEditField;
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
     private int nextId = 1;
@@ -78,7 +79,7 @@ public class ValdymasController {
 
         studentTable.setItems(students);
 
-        groups.put("Default", new ArrayList<>());
+        groups.put("Bendra", new ArrayList<>());
 
         addButton.setOnAction(event -> addStudent());
         editButton.setOnAction(event -> editStudent());
@@ -103,7 +104,7 @@ public class ValdymasController {
         for (int i = 0; i < 10; i++) {
             String name = randomNames[random.nextInt(randomNames.length)];
             String surname = randomSurnames[random.nextInt(randomSurnames.length)];
-            Student student = new Student(name, surname, nextId++, "Default") {
+            Student student = new Student(name, surname, nextId++, "Bendra") {
                 @Override
                 public String getStudentType() {
                     return "Regular";
@@ -113,7 +114,7 @@ public class ValdymasController {
         }
 
         studentTable.refresh(); // Refresh the table to show the new students
-        problemStudentField.setText("10 random students have been added.");
+        problemStudentField.setText("Pridėta 10 atsitiktinių studentų.");
     }
 
 
@@ -121,59 +122,91 @@ public class ValdymasController {
         String name = nameField.getText();
         String surname = surnameField.getText();
 
-        if (!name.isEmpty() && !surname.isEmpty()) {
-            Student student = new Student(name, surname, nextId++, "Default") {
-                @Override
-                public String getStudentType() {
-                    return "Regular";
-                }
-            };
-            students.add(student);
-
-            nameField.clear();
-            surnameField.clear();
+        if (name.isEmpty() || surname.isEmpty()) {
+            problemStudentField.setText("Vardo arba pavardės laukas yra tuščias.");
+            return;
         }
+
+        Student student = new Student(name, surname, nextId++, "Bendra") {
+            @Override
+            public String getStudentType() {
+                return "Regular";
+            }
+        };
+        students.add(student);
+
+        problemStudentField.setText("Studentas " + name + " " + surname + " sėkmingai pridėtas.");
+        nameField.clear();
+        surnameField.clear();
     }
 
     private void editStudent() {
-        try{
-            int id = Integer.parseInt(editIdField.getText());
-            String newName = editNameField.getText();
-            String newSurname = editSurnameField.getText();
+        String idText = editIdField.getText();
+
+        if (idText.isEmpty()) {
+            problemEditField.setText("ID neįvestas.");
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idText);
+            boolean studentFound = false;
 
             for (Student student : students) {
                 if (student.getStudentId() == id) {
+                    studentFound = true;
+
+                    String newName = editNameField.getText();
+                    String newSurname = editSurnameField.getText();
+
                     if (!newName.isEmpty()) {
                         student.setName(newName);
                     }
                     if (!newSurname.isEmpty()) {
                         student.setSurname(newSurname);
                     }
+
                     studentTable.refresh(); // Refresh the table to show updated data
+                    problemEditField.setText("Studento su ID " + id + " duomenys atnaujinti į " + student.getName() + " " + student.getSurname() + ".");
                     break;
                 }
             }
 
-            editIdField.clear();
-            editNameField.clear();
-            editSurnameField.clear();
+            if (!studentFound) {
+                problemEditField.setText("Studentas su ID " + id + " nerastas.");
+            }
+
         } catch (NumberFormatException e) {
-            // Handle invalid ID input
+            problemEditField.setText("Neteisingas ID. Įveskite skaitinę reikšmę.");
         }
+
+        editIdField.clear();
+        editNameField.clear();
+        editSurnameField.clear();
     }
 
     private void removeStudent() {
-        try {
-            int id = Integer.parseInt(editIdField.getText());
+        String idText = editIdField.getText();
 
-            students.removeIf(student -> student.getStudentId() == id);
+        if (idText.isEmpty()) {
+            problemEditField.setText("ID neįvestas.");
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idText);
+            boolean studentRemoved = students.removeIf(student -> student.getStudentId() == id);
+
+            if (studentRemoved) {
+                problemEditField.setText("Studentas su ID " + id + " sėkmingai ištrintas.");
+            } else {
+                problemEditField.setText("Studentas su ID " + id + " nerastas.");
+            }
 
             studentTable.refresh(); // Refresh the table to reflect changes
-
-            // Clear the input field
-            editIdField.clear();
+            editIdField.clear(); // Clear the input field
         } catch (NumberFormatException e) {
-            // Handle invalid ID input
+            problemEditField.setText("Neteisingas ID. Įveskite skaitinę reikšmę.");;
         }
     }
 
@@ -184,35 +217,35 @@ public class ValdymasController {
         String groupName = groupNameField.getText();
         if (!groupName.isEmpty() && !groups.containsKey(groupName)) {
             groups.put(groupName, new ArrayList<>());
-            problemGroupField.setText("Group with the name " + groupName + " has been created.");
+            problemGroupField.setText("Grupė su pavadinimu " + groupName + " sukurta.");
             groupNameField.clear();
         } else if (groups.containsKey(groupName)) {
-            problemGroupField.setText("Group with the name " + groupName + " already exists.");
+            problemGroupField.setText("Grupė su pavadinimu " + groupName + " jau egzistuoja.");
         } else {
-            problemGroupField.setText("Group name field is empty.");
+            problemGroupField.setText("Grupės pavadinimo laukas yra tuščias.");
         }
     }
 
     private void deleteGroup() {
         String groupName = groupNameField.getText();
 
-        if ("Default".equals(groupName)) {
-            problemGroupField.setText("The Default group cannot be deleted.");
+        if ("Bendra".equals(groupName)) {
+            problemGroupField.setText("Grupės \"Bendra\" ištrinti negalima.");
             return;
         }
 
         if (!groupName.isEmpty() && groups.containsKey(groupName)) {
             List<Student> studentsInGroup = groups.get(groupName);
             for (Student student : studentsInGroup) {
-                student.setGroupName("Default");
-                groups.get("Default").add(student);
+                student.setGroupName("Bendra");
+                groups.get("Bendra").add(student);
             }
             groups.remove(groupName);
-            problemGroupField.setText("Group " + groupName + " has been deleted.");
+            problemGroupField.setText("Grupė " + groupName + " ištrinta.");
             groupNameField.clear();
             studentTable.refresh();
         } else {
-            problemGroupField.setText("Group " + groupName + " does not exist.");
+            problemGroupField.setText("Grupė " + groupName + " neegzistuoja.");
         }
     }
 
@@ -222,7 +255,7 @@ public class ValdymasController {
         String studentIdText = groupIdField.getText(); // Use groupIdField instead of editIdField
 
         if (studentIdText.isEmpty()) {
-            problemGroupField.setText("Student ID field is empty.");
+            problemGroupField.setText("Studento ID laukas yra tuščias.");
             return;
         }
 
@@ -244,19 +277,19 @@ public class ValdymasController {
                 }
 
                 if (studentAdded) {
-                    problemGroupField.setText("Student with ID " + studentId + " has been added to group " + groupName);
+                    problemGroupField.setText("Studentas su ID " + studentId + " pridėtas į grupę " + groupName + ".");
                 } else {
-                    problemGroupField.setText("Student with ID " + studentId + " not found.");
+                    problemGroupField.setText("Studentas su ID " + studentId + " nerastas.");
                 }
             } else {
-                problemGroupField.setText("Group " + groupName + " does not exist.");
+                problemGroupField.setText("Grupė " + groupName + " neegzistuoja.");
             }
 
             studentTable.refresh(); // Refresh the table to reflect changes
-            groupNameField.clear();
+            //groupNameField.clear();
             groupIdField.clear(); // Clear groupIdField
         } catch (NumberFormatException e) {
-            problemGroupField.setText("Invalid student ID. Please enter a numeric value.");
+            problemGroupField.setText("Neteisingas studento ID. Įveskite skaitinę reikšmę.");
         }
     }
 
@@ -264,7 +297,7 @@ public class ValdymasController {
         String studentIdText = groupIdField.getText();
 
         if (studentIdText.isEmpty()) {
-            problemGroupField.setText("Student ID field is empty.");
+            problemGroupField.setText("Studento ID laukas yra tuščias.");
             return;
         }
 
@@ -277,9 +310,9 @@ public class ValdymasController {
                     if (groups.containsKey(currentGroup)) {
                         groups.get(currentGroup).remove(student); // Remove from current group
                     }
-                    student.setGroupName("Default"); // Assign to Default group
-                    groups.get("Default").add(student); // Add to Default group
-                    problemGroupField.setText("Student with ID " + studentId + " has been removed from their group and assigned to Default.");
+                    student.setGroupName("Bendra"); // Assign to Bendra group
+                    groups.get("Bendra").add(student); // Add to Bendra group
+                    problemGroupField.setText("Studentas su ID " + studentId + " pašalintas iš grupės ir priskirtas grupei \"Bendra\".");
                     break;
                 }
             }
@@ -287,7 +320,7 @@ public class ValdymasController {
             studentTable.refresh(); // Refresh the table to reflect changes
             groupIdField.clear(); // Clear only the student ID field
         } catch (NumberFormatException e) {
-            problemGroupField.setText("Invalid student ID. Please enter a numeric value.");
+            problemGroupField.setText("Neteisingas studento ID. Įveskite skaitinę reikšmę.");
         }
     }
 
