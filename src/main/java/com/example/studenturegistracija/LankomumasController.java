@@ -11,6 +11,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,10 @@ public class LankomumasController {
 
     @FXML
     private Button rodytiButton;
+
+    @FXML
+    private Label problemField;
+
 
     private final ObservableList<Student> studentsInGroup = FXCollections.observableArrayList();
 
@@ -165,17 +170,26 @@ public class LankomumasController {
         String selectedGroup = chooseGroup.getValue();
         LocalDate startDate = startingGroupDate.getValue();
 
-        if (selectedGroup == null || startDate == null) {
-            System.out.println("Group or start date is null.");
+        problemField.setText("");
+
+        if (selectedGroup == null) {
+            problemField.setText("Nepasirinkta grupė");
             return;
         }
 
-        // Retrieve students from the selected group
+        if (startDate == null) {
+            problemField.setText("Nepasirinkta data");
+            return;
+        }
+
+
+
+        // Get students for the selected group
         Map<String, List<Student>> groups = SharedData.getInstance().getGroups();
         List<Student> groupStudents = groups.get(selectedGroup);
 
         if (groupStudents == null || groupStudents.isEmpty()) {
-            System.out.println("No students found for the selected group: " + selectedGroup);
+            problemField.setText("Grupėje \"" + selectedGroup + "\" nėra studentų");
             studentsInGroup.clear();
             return;
         }
@@ -194,16 +208,38 @@ public class LankomumasController {
         saturdayColumn.setText(startDate.plusDays(5).format(formatter));
         sundayColumn.setText(startDate.plusDays(6).format(formatter));
 
+
+        LocalDate endDate = startDate.plusDays(6);
+        DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MMMM", new java.util.Locale("lt"));
+        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("d");
+
+        String month = startDate.format(monthFormatter);
+        String startDay = startDate.format(dayFormatter);
+        String endDay = endDate.format(dayFormatter);
+
+        problemField.setText("Rodomas " + month + " mėn. sav. (" + startDay + " - " + endDay + " d.) lankomumas");
+
+
         updateTotalColumn();
 
     }
 
     private void refreshGroupChoices() {
-        System.out.println("Available groups: " + SharedData.getInstance().getGroups());
-        chooseGroup.getItems().clear();
-        chooseGroup.getItems().addAll(SharedData.getInstance().getGroups().keySet());
+        // Make sure Bendra group is updated
 
-        boolean containsBendra = SharedData.getInstance().getGroups().containsKey("Bendra");
-        System.out.println("Contains 'Bendra': " + containsBendra);
+
+        Map<String, List<Student>> groups = SharedData.getInstance().getGroups();
+        System.out.println("Available groups: " + groups.keySet());
+
+        chooseGroup.getItems().clear();
+        chooseGroup.getItems().addAll(groups.keySet());
+
+        // If there are items, select Bendra by default
+        if (!chooseGroup.getItems().isEmpty() && groups.containsKey("Bendra")) {
+            chooseGroup.setValue("Bendra");
+        }
+
+        System.out.println("Number of students in Bendra: " +
+                (groups.get("Bendra") == null ? 0 : groups.get("Bendra").size()));
     }
 }

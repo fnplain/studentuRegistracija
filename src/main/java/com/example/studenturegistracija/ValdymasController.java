@@ -89,7 +89,7 @@ public class ValdymasController {
 
         studentTable.setItems(students);
 
-        groups.put("Bendra", new ArrayList<>());
+
 
         addButton.setOnAction(event -> addStudent());
         editButton.setOnAction(event -> editStudent());
@@ -125,6 +125,19 @@ public class ValdymasController {
                 }
             };
             students.add(student);
+            SharedData.getInstance().addStudent(student);
+
+            if (SharedData.getInstance().getGroups().containsKey("Bendra")) {
+                List<Student> bendraGroup = SharedData.getInstance().getGroups().get("Bendra");
+                if (!bendraGroup.contains(student)) {
+                    bendraGroup.add(student);
+                }
+            } else {
+                // Create Bendra group if it doesn't exist
+                SharedData.getInstance().addGroup("Bendra");
+                SharedData.getInstance().getGroups().get("Bendra").add(student);
+            }
+
         }
 
         studentTable.refresh(); // Refresh the table to show the new students
@@ -149,10 +162,28 @@ public class ValdymasController {
         };
         students.add(student);
 
+        SharedData.getInstance().addStudent(student);
+        SharedData.getInstance().addStudentToGroup(student, "Bendra");
+
+        students.setAll(SharedData.getInstance().getStudents());
+
+        if (SharedData.getInstance().getGroups().containsKey("Bendra")) {
+            List<Student> bendraGroup = SharedData.getInstance().getGroups().get("Bendra");
+            if (!bendraGroup.contains(student)) {
+                bendraGroup.add(student);
+            }
+        } else {
+            // Create Bendra group if it doesn't exist
+            SharedData.getInstance().addGroup("Bendra");
+            SharedData.getInstance().getGroups().get("Bendra").add(student);
+        }
+
         problemStudentField.setText("Studentas " + name + " " + surname + " sėkmingai pridėtas.");
         nameField.clear();
         surnameField.clear();
     }
+
+
 
     private void editStudent() {
         String idText = editIdField.getText();

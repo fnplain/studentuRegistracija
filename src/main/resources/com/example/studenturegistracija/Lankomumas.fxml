@@ -11,6 +11,7 @@
                 <Font size="16.0" />
             </font>
         </Label>
+        <Label fx:id="problemField" layoutX="33.0" layoutY="70.0" prefHeight="22.0" prefWidth="327.0" text="" textFill="RED" />
         <ChoiceBox fx:id="chooseGroup" layoutX="31.0" layoutY="44.0" prefHeight="26.0" prefWidth="165.0" />
         <Label layoutX="242.0" layoutY="14.0" text="Pasirinkti datą" wrapText="true">
             <font>
@@ -32,7 +33,7 @@
                 <TableColumn fx:id="totalColumn" prefWidth="22.0" text="X" />
             </columns>
         </TableView>
-        <CheckBox layoutX="28.0" layoutY="100.0" mnemonicParsing="false" text="Rodyti tik užpildytas dienas">
+        <CheckBox layoutX="33.0" layoutY="101.0" mnemonicParsing="false" text="Rodyti tik užpildytas dienas">
             <font>
                 <Font size="16.0" />
             </font>
