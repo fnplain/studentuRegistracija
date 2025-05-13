@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.studenturegistracija.ValdymasController">
+    <children>
+        <TableView layoutX="12.0" layoutY="372.0" prefHeight="288.0" prefWidth="572.0">
+            <columns>
+                <TableColumn prefWidth="51.0" text="ID" />
+                <TableColumn prefWidth="163.0" text="Vardas" />
+                <TableColumn prefWidth="165.0" text="Pavardė" />
+                <TableColumn prefWidth="192.0" text="Grupė" />
+            </columns>
+        </TableView>
+        <Button layoutX="368.0" layoutY="48.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Pridėti " />
+        <TextField layoutX="28.0" layoutY="48.0" promptText="Vardas" />
+        <TextField layoutX="197.0" layoutY="48.0" promptText="Pavardė" />
+        <Label layoutX="29.0" layoutY="74.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <Button layoutX="202.0" layoutY="143.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Išmesti" />
+        <Label layoutX="28.0" layoutY="115.0" prefHeight="20.0" prefWidth="236.0" text="Studento duomenų redagavimas">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField layoutX="31.0" layoutY="178.0" promptText="Keisti vardą" />
+        <TextField layoutX="202.0" layoutY="178.0" promptText="Keisti pavardę" />
+        <TextField layoutX="369.0" layoutY="178.0" prefHeight="26.0" prefWidth="76.0" promptText="Keisti klasę" />
+        <Button layoutX="455.0" layoutY="178.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Keisti" />
+        <Label layoutX="29.0" layoutY="242.0" prefHeight="20.0" prefWidth="209.0" text="Grupių valdymas">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="32.0" layoutY="204.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <Label layoutX="29.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0" text="Studento pridėjimas">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField layoutX="28.0" layoutY="274.0" prefHeight="26.0" prefWidth="200.0" promptText="Grupės pavadinimas" />
+        <Button layoutX="240.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Kurti" />
+        <Button layoutX="329.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Trinti" />
+        <Button layoutX="195.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Pridėti studentą" />
+        <Button layoutX="323.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Išmesti studentą" />
+        <Label layoutX="29.0" layoutY="333.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
+        <TextField layoutX="31.0" layoutY="143.0" promptText="Studento ID" />
+        <TextField layoutX="28.0" layoutY="307.0" promptText="Studento ID" />
+    </children>
+</Pane>

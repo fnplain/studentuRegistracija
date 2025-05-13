@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.Pane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+    <tabs>
+        <Tab text="Valdymas">
+            <content>
+                <fx:include source="Valdymas.fxml" />
+            </content>
+        </Tab>
+        <Tab text="Lankomumas">
+            <content>
+                <fx:include source="Lankomumas.fxml" />
+            </content>
+        </Tab>
+        <Tab text="Duomenys">
+            <content>
+                <fx:include source="Duomenys.fxml" />
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

@@ -1,137 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
-  <tabs>
-    <Tab text="Valdymas">
-         <content>
-            <Pane prefHeight="712.0" prefWidth="600.0">
-               <children>
-                  <TableView layoutX="12.0" layoutY="372.0" prefHeight="288.0" prefWidth="572.0">
-                    <columns>
-                        <TableColumn prefWidth="51.0" text="ID" />
-                      <TableColumn prefWidth="163.0" text="Vardas" />
-                      <TableColumn prefWidth="165.0" text="Pavardė" />
-                        <TableColumn prefWidth="192.0" text="Grupė" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="368.0" layoutY="48.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Pridėti " />
-                  <TextField layoutX="28.0" layoutY="48.0" promptText="Vardas" />
-                  <TextField layoutX="197.0" layoutY="48.0" promptText="Pavardė" />
-                  <Label layoutX="29.0" layoutY="74.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
-                  <Button layoutX="202.0" layoutY="143.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Išmesti" />
-                  <Label layoutX="28.0" layoutY="115.0" prefHeight="20.0" prefWidth="236.0" text="Studento duomenų redagavimas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="31.0" layoutY="178.0" promptText="Keisti vardą" />
-                  <TextField layoutX="202.0" layoutY="178.0" promptText="Keisti pavardę" />
-                  <TextField layoutX="369.0" layoutY="178.0" prefHeight="26.0" prefWidth="76.0" promptText="Keisti klasę" />
-                  <Button layoutX="455.0" layoutY="178.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Keisti" />
-                  <Label layoutX="29.0" layoutY="242.0" prefHeight="20.0" prefWidth="209.0" text="Grupių valdymas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="32.0" layoutY="204.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
-                  <Label layoutX="29.0" layoutY="14.0" prefHeight="20.0" prefWidth="209.0" text="Studento pridėjimas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="28.0" layoutY="274.0" prefHeight="26.0" prefWidth="200.0" promptText="Grupės pavadinimas" />
-                  <Button layoutX="240.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Kurti" />
-                  <Button layoutX="329.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Trinti" />
-                  <Button layoutX="195.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Pridėti studentą" />
-                  <Button layoutX="323.0" layoutY="307.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Išmesti studentą" />
-                  <Label layoutX="29.0" layoutY="333.0" prefHeight="22.0" prefWidth="327.0" text="Problema: nėra" textFill="RED" />
-                  <TextField layoutX="31.0" layoutY="143.0" promptText="Studento ID" />
-                  <TextField layoutX="28.0" layoutY="307.0" promptText="Studento ID" />
-               </children>
-            </Pane>
-         </content>
-    </Tab>
-    <Tab text="Lankomumas">
-         <content>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="31.0" layoutY="14.0" text="Pasirinkti grupę" wrapText="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox layoutX="31.0" layoutY="44.0" prefHeight="26.0" prefWidth="165.0" />
-                  <Label layoutX="31.0" layoutY="93.0" text="Pasirinkti datą" wrapText="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <DatePicker layoutX="31.0" layoutY="122.0" promptText="Nuo" />
-                  <DatePicker layoutX="232.0" layoutY="122.0" promptText="Iki" />
-                  <TableView layoutX="12.0" layoutY="237.0" prefHeight="422.0" prefWidth="565.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="Vardas" />
-                      <TableColumn prefWidth="75.0" text="Pavardė" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="56.0" text="Date 1" />
-                        <TableColumn prefWidth="22.0" text="X" />
-                    </columns>
-                  </TableView>
-                  <CheckBox layoutX="28.0" layoutY="172.0" mnemonicParsing="false" text="Rodyti tik užpildytas dienas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </CheckBox>
-               </children>
-            </Pane>
-         </content>
-    </Tab>
-      <Tab text="Duomenys">
-         <content>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <DatePicker layoutX="32.0" layoutY="101.0" promptText="Nuo" />
-                  <DatePicker layoutX="242.0" layoutY="101.0" promptText="Iki" />
-                  <Label layoutX="32.0" layoutY="68.0" text="Pasirinkti datą">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="444.0" layoutY="101.0" mnemonicParsing="false" text="Parsisiųsti" />
-                  <Label layoutX="160.0" layoutY="23.0" text="Lankomumo sąrašas">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="31.0" layoutY="185.0" text="Duomenų importavimas ir eksportavimas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="31.0" layoutY="222.0" prefHeight="26.0" prefWidth="175.0" promptText="Failo pavadinimas" />
-                  <Button layoutX="226.0" layoutY="222.0" mnemonicParsing="false" text="Importuoti" />
-                  <Button layoutX="313.0" layoutY="222.0" mnemonicParsing="false" text="Eksportuoti" />
-               </children>
-            </Pane>
-         </content>
-      </Tab>
-  </tabs>
-</TabPane>
+<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.studenturegistracija.DuomenysController">
+    <children>
+        <DatePicker layoutX="32.0" layoutY="101.0" promptText="Nuo" />
+        <DatePicker layoutX="242.0" layoutY="101.0" promptText="Iki" />
+        <Label layoutX="32.0" layoutY="68.0" text="Pasirinkti datą">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Button layoutX="444.0" layoutY="101.0" mnemonicParsing="false" text="Parsisiųsti" />
+        <Label layoutX="160.0" layoutY="23.0" text="Lankomumo sąrašas">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <Label layoutX="31.0" layoutY="185.0" text="Duomenų importavimas ir eksportavimas">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField layoutX="31.0" layoutY="222.0" prefHeight="26.0" prefWidth="175.0" promptText="Failo pavadinimas" />
+        <Button layoutX="226.0" layoutY="222.0" mnemonicParsing="false" text="Importuoti" />
+        <Button layoutX="313.0" layoutY="222.0" mnemonicParsing="false" text="Eksportuoti" />
+    </children>
+</Pane>

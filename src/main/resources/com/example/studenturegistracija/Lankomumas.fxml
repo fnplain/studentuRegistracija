@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.studenturegistracija.LankomumasController">
+    <children>
+        <Label layoutX="31.0" layoutY="14.0" text="Pasirinkti grupę" wrapText="true">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <ChoiceBox layoutX="31.0" layoutY="44.0" prefHeight="26.0" prefWidth="165.0" />
+        <Label layoutX="31.0" layoutY="93.0" text="Pasirinkti datą" wrapText="true">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <DatePicker layoutX="31.0" layoutY="122.0" promptText="Nuo" />
+        <DatePicker layoutX="232.0" layoutY="122.0" promptText="Iki" />
+        <TableView layoutX="12.0" layoutY="237.0" prefHeight="422.0" prefWidth="565.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="Vardas" />
+                <TableColumn prefWidth="75.0" text="Pavardė" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="56.0" text="Date 1" />
+                <TableColumn prefWidth="22.0" text="X" />
+            </columns>
+        </TableView>
+        <CheckBox layoutX="28.0" layoutY="172.0" mnemonicParsing="false" text="Rodyti tik užpildytas dienas">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </CheckBox>
+    </children>
+</Pane>
