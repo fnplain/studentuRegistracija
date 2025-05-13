@@ -49,9 +49,20 @@ public abstract class Student {
         return attendance;
     }
 
-    public void markAttendance(String date, boolean present) {
-        attendance.put(date, present);
+    public void markAttendance(String date, boolean attended) {
+        if (attended) {
+            attendance.put(date, true);
+        } else {
+            attendance.remove(date);
+        }
+    }
+
+    public Boolean getAttendanceForDate(String date) {
+        return attendance.getOrDefault(date, false);
     }
 
     public abstract String getStudentType();
+
+
+
 }

@@ -3,9 +3,14 @@ package com.example.studenturegistracija;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ValdymasController {
@@ -64,10 +69,15 @@ public class ValdymasController {
     @FXML
     private Label problemEditField;
 
-    private ObservableList<Student> students = FXCollections.observableArrayList();
+
+
+
+    private ObservableList<Student> students = FXCollections.observableArrayList(SharedData.getInstance().getStudents());
+    private Map<String, List<Student>> groups = SharedData.getInstance().getGroups();
+
     private int nextId = 1;
 
-    private Map<String, List<Student>> groups = new HashMap<>();
+
 
 
     @FXML
@@ -90,6 +100,10 @@ public class ValdymasController {
         deleteGroupButton.setOnAction(event -> deleteGroup());
         assignToGroupButton.setOnAction(event -> assignStudentToGroup());
         removeFromGroupButton.setOnAction(event-> removeStudentFromGroup());
+
+
+
+
     }
 
     //DEBUG
@@ -215,14 +229,17 @@ public class ValdymasController {
 
     private void createGroup() {
         String groupName = groupNameField.getText();
-        if (!groupName.isEmpty() && !groups.containsKey(groupName)) {
-            groups.put(groupName, new ArrayList<>());
-            problemGroupField.setText("Grupė su pavadinimu " + groupName + " sukurta.");
-            groupNameField.clear();
-        } else if (groups.containsKey(groupName)) {
+        if (groupName == null || groupName.trim().isEmpty()) {
+            problemGroupField.setText("Grupės pavadinimo laukas yra tuščias.");
+            return;
+        }
+
+        if (SharedData.getInstance().getGroups().containsKey(groupName)) {
             problemGroupField.setText("Grupė su pavadinimu " + groupName + " jau egzistuoja.");
         } else {
-            problemGroupField.setText("Grupės pavadinimo laukas yra tuščias.");
+            SharedData.getInstance().addGroup(groupName);
+            problemGroupField.setText("Grupė su pavadinimu " + groupName + " sukurta.");
+            groupNameField.clear();
         }
     }
 
@@ -323,5 +340,12 @@ public class ValdymasController {
             problemGroupField.setText("Neteisingas studento ID. Įveskite skaitinę reikšmę.");
         }
     }
+
+
+    // LANKOMUMAS
+
+
+
+
 
 }
